@@ -4,11 +4,34 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <h1>{{ user.username }}'s To Do List</h1>
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
+    <div class="container" style="padding-top: 30px;">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 d-flex justify-content-center">
+                <h1>{{ user.username }}'s To Do List</h1>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
 {% else %}
-    <h2>You must sign up or login to make a list</h2>
-    <a href="{% url 'login' %}">Log In</a>
-    <a href="{% url 'signup'%}">Sign Up</a>
+    <div class="container" style="padding-top:30px;">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 d-flex justify-content-center">
+                <h2>You must Sign Up or Login to make a list</h2>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 d-flex justify-content-center">
+                <span style="font-size: 20px;">
+                    <a href="{% url 'login' %}">Log In</a> | 
+                    <a href="{% url 'signup'%}">Sign Up</a> 
+                </span>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
 {% endif %}
 {% endblock content %}

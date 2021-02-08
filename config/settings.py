@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # local
     'lists',
+
+    # third party
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +129,5 @@ AUTH_USER_MODEL = 'lists.CustomUser'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL ='home'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
