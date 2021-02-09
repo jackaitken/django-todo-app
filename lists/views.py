@@ -12,3 +12,12 @@ class SignUpView(CreateView):
 class ToDoListView(ListView):
     model = ToDoList
     template_name = 'todo_lists.html'
+
+class ToDoListCreateView(CreateView):
+    model = ToDoList
+    template_name = 'list_new.html'
+    fields = ('name',)
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)

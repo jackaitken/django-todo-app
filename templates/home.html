@@ -17,13 +17,20 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8 d-flex justify-content-center">
-                <h5>To add a new list <a href="#">click here</a>
-                    or to edit an existing list <a href="{% url 'todolists' %}">click here.</a></h5>
+                <h5>To add a new list <a href="{% url 'list_new' %}">click here</a></h5>
             </div>
             <div class="col-2"></div>
         </div>
     </div>
-
+    <div class="container" style="padding-top: 30px;">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 d-flex justify-content-center">
+                <h5>or to edit an existing list <a href="{% url 'todolists' %}">click here.</a></h5>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
 {% else %}
     <div class="container" style="padding-top:30px;">
         <div class="row">

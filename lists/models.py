@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 class CustomUser(AbstractUser):
     pass
@@ -14,6 +15,9 @@ class ToDoList(models.Model):
     
     def __str__(self):
         return f"{self.owner}\'s \"{self.name}\" List"
+
+    def get_absolute_url(self):
+        return reverse('todolists')
 
 class Item(models.Model):
     title = models.CharField(max_length=225)
