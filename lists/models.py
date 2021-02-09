@@ -16,8 +16,9 @@ class ToDoList(models.Model):
         return f"{self.owner}\'s \"{self.name}\" List"
 
 class Item(models.Model):
-    on_list = models.ForeignKey(ToDoList, on_delete=models.CASCADE)
-    item_to_add = models.CharField(max_length=75, blank=True)
+    title = models.CharField(max_length=225)
+    completed = models.BooleanField(default=False)
+    to_do_list = models.ForeignKey(ToDoList, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"\"{self.item_to_add}\" on {self.on_list}"
+        return f"{self.title}"

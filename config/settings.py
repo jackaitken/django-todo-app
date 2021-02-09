@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'crispy_forms'
 ]
 
+TIME_ZONE = 'America/New_York'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
