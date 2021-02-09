@@ -24,7 +24,7 @@
                             <a class="nav-link" href="{% url 'list_new' %}">New List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'todolists' %}">My Lists</a>
+                            <a class="nav-link" href="{% url 'todolists' user.pk %}">My Lists</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Log Out</a>

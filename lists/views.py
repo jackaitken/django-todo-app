@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm
 from django.views.generic import CreateView, ListView
+from django.shortcuts import get_object_or_404
 from .models import ToDoList
 
 class SignUpView(CreateView):
@@ -12,6 +13,10 @@ class SignUpView(CreateView):
 class ToDoListView(ListView):
     model = ToDoList
     template_name = 'todo_lists.html'
+
+    def get_queryset(self):
+        current_user = ToDoList.objects.filter(owner=self.request.user.id)
+        return current_user
 
 class ToDoListCreateView(CreateView):
     model = ToDoList

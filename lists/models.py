@@ -17,7 +17,7 @@ class ToDoList(models.Model):
         return f"{self.owner}\'s \"{self.name}\" List"
 
     def get_absolute_url(self):
-        return reverse('todolists')
+        return reverse('todolists', args=[str(self.id)])
 
 class Item(models.Model):
     title = models.CharField(max_length=225)
