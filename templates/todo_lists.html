@@ -13,19 +13,18 @@
     </div>
 </div>
 {% for list in object_list %}
-    <div class="container">
+    <div class="container" style="padding: 10px;">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <span class="font-weight-bold">{{ list.title }}</span>
-                    </div>
-                    <div class="card-header">
-                        <span class="font-weight-bold">{{ list.owner }}</span>
+                        <span class="font-weight-bold d-flex justify-content-center">{{ list.name }}</span>
                     </div>
                     <div class="card-body">
-                        To do list
+                        {% for item in list.items.all %}
+                            <div>{{ item }}</div>
+                        {% endfor %}
                     </div>
                     <div class="card-footer text-center text-muted">
                         <a href="#">Add an Item</a> | <a href="#">Delete List</a>

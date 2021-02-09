@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm
 from django.views.generic import CreateView, ListView
 from django.shortcuts import get_object_or_404
-from .models import ToDoList
+from .models import ToDoList, Item
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm

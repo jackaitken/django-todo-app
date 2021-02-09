@@ -22,7 +22,11 @@ class ToDoList(models.Model):
 class Item(models.Model):
     title = models.CharField(max_length=225)
     completed = models.BooleanField(default=False)
-    to_do_list = models.ForeignKey(ToDoList, on_delete=models.CASCADE)
+    to_do_list = models.ForeignKey(
+        ToDoList, 
+        on_delete=models.CASCADE,
+        related_name='items'
+        )
 
     def __str__(self):
         return f"{self.title}"
