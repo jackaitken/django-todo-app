@@ -27,7 +27,8 @@
                         {% endfor %}
                     </div>
                     <div class="card-footer text-center text-muted">
-                        <a href="#">Add an Item</a> | <a href="#">Delete List</a>
+                        <a href="{% url 'item_new' list.pk %}">Add an Item</a> | 
+                        <a href="{% url 'list_delete' list.pk %}">Delete List</a>
                     </div>
                 </div>
             </div>

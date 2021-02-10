@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Are you sure you want to delete?{% endblock title %}
+
+{% block content %}
+<h1>Delete List</h1>
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ todolist.name }}"?</p>
+    <input type="submit" value="Confirm">
+</form>
+{% endblock content %}
