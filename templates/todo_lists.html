@@ -22,9 +22,12 @@
                         <span class="font-weight-bold d-flex justify-content-center">{{ list.name }}</span>
                     </div>
                     <div class="card-body">
-                        {% for item in list.items.all %}
-                            <div>{{ item }}</div>
-                        {% endfor %}
+                        <ol>
+                            {% for item in list.items.all %}
+                                <li>{{ item }} <input class="form-check-input" type="checkbox"></li>
+                            {% endfor %}
+                        </ol>
+                        
                     </div>
                     <div class="card-footer text-center text-muted">
                         <a href="{% url 'item_new' list.pk %}">Add an Item</a> | 
@@ -36,5 +39,5 @@
         </div>
     </div>
 
-{% endfor %}
-{% endblock content %}
+    {% endfor %}
+    {% endblock content %}

@@ -39,4 +39,4 @@ class ToDoListDeleteView(DeleteView):
 class ItemCreateView(CreateView):
     model = Item
     template_name = 'item_new.html'
-    fields = ('title',) 
+    fields = ('title', 'to_do_list', ) 
