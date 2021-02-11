@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .forms import CustomUserCreationForm
 from django.views.generic import CreateView, ListView, DeleteView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from django.http import HttpResponseRedirect
 from .models import ToDoList, Item
 
 class SignUpView(CreateView):
@@ -36,7 +37,12 @@ class ToDoListDeleteView(DeleteView):
         user_id = self.request.user.id
         return reverse_lazy('todolists', args=[str(user_id)])
 
-class ItemCreateView(CreateView):
-    model = Item
-    template_name = 'item_new.html'
-    fields = ('title', 'to_do_list', ) 
+def item_new_view(request, pk):
+    if request.method == "POST":
+        item_title = request.POST['new-item']
+        user_to_do_list = ToDoList.objects.get(pk=pk)
+        item = Item(title=item_title, completed=False, to_do_list=user_to_do_list)
+        item.save()
+        return HttpResponseRedirect(reverse('todolists', args={pk}))
+    else:
+        return render(request, 'item_new.html')
