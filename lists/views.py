@@ -39,10 +39,13 @@ class ToDoListDeleteView(DeleteView):
 
 def item_new_view(request, pk):
     if request.method == "POST":
-        item_title = request.POST['new-item']
-        user_to_do_list = ToDoList.objects.get(pk=pk)
-        item = Item(title=item_title, completed=False, to_do_list=user_to_do_list)
-        item.save()
-        return HttpResponseRedirect(reverse('todolists', args={pk}))
+        if 'new-item' in request.POST:
+            item_title = request.POST['new-item']
+            user_to_do_list = ToDoList.objects.get(pk=pk)
+            item = Item(title=item_title, completed=False, to_do_list=user_to_do_list)
+            item.save()
+            return HttpResponseRedirect(reverse('todolists', args={pk}))
+        else:
+            pass
     else:
         return render(request, 'item_new.html')

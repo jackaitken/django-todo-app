@@ -7,39 +7,61 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8 d-flex justify-content-center">
-            <h1>{{ user.username }}'s Lists</h1>
+            {% if object_list %}
+                <h1>{{ user.username }}'s Lists</h1>
+            {% endif %}
         </div>
         <div class="col-2"></div>
     </div>
 </div>
-{% for list in object_list %}
-    <div class="container" style="padding: 10px;">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                        <span class="font-weight-bold d-flex justify-content-center">{{ list.name }}</span>
-                    </div>
-                    <div class="card-body">
-                        <ol class="list-group">
-                        {% for item in list.items.all %}
-                            <li class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox">
-                                {{ item }}
-                            </li>
-                        {% endfor %}
-                        </ol>
-                    </div>
-                    <div class="card-footer text-center text-muted">
-                        <a href="{% url 'item_new' list.pk %}">Add an Item</a> | 
-                        <a href="{% url 'list_delete' list.pk %}">Delete List</a>
+{% if object_list %}
+    {% for list in object_list %}
+        <div class="container" style="padding: 10px;">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="font-weight-bold d-flex justify-content-center">{{ list.name }}</span>
+                        </div>
+                        <div class="card-body">
+                            <ol class="list-group">
+                            {% for item in list.items.all %}
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox">
+                                    {{ item }}
+                                </li>
+                            {% endfor %}
+                            </ol>
+                        </div>
+                        <div class="card-footer text-center text-muted">
+                            <a href="{% url 'item_new' list.pk %}">Add an Item</a> | 
+                            <a href="{% url 'list_delete' list.pk %}">Delete List</a>
+                        </div>
                     </div>
                 </div>
+                <div class="col-3"></div>
             </div>
-            <div class="col-3"></div>
         </div>
-    </div>
-
     {% endfor %}
+{% else %}
+<div class="container" style="padding-top: 30px;">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 d-flex justify-content-center">
+            <h2>Hmm... It looks like you don't have any lists yet</h2>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+<div class="container" style="padding-top: 30px;">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 d-flex justify-content-center">
+            <h5>That's alright, <a href="{% url 'list_new' %}">click here </a>to add one.</h5>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+{% endif %}
     {% endblock content %}
