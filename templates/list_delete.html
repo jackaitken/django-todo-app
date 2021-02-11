@@ -3,10 +3,28 @@
 {% block title %}Are you sure you want to delete?{% endblock title %}
 
 {% block content %}
-<h1>Delete List</h1>
-<form method="post">
-    {% csrf_token %}
-    <p>Are you sure you want to delete "{{ todolist.name }}"?</p>
-    <input type="submit" value="Confirm">
-</form>
+<div class="container" style="padding-top: 30px;">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 d-flex justify-content-center">
+            <h1>Delete List</h1>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 d-flex justify-content-center">
+            <form method="post">
+                {% csrf_token %}
+                <p>Are you sure you want to delete "{{ todolist.name }}"?</p>
+                <button type="submit" class="btn btn-danger d-grid gap-2 col-6 mx-auto">Delete</button>
+                <!-- <input type="submit" value="Confirm" class="d-flex justify-content-center"> -->
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
 {% endblock content %}
