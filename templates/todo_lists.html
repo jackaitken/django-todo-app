@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}To Do Lists{% endblock title %}
 
@@ -28,7 +29,7 @@
                             <ol class="list-group">
                             {% for item in list.items.all %}
                                 <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox">
+                                    <input class="form-check-input me-1" type="checkbox" id="completed">
                                     {{ item }}
                                 </li>
                             {% endfor %}
@@ -64,4 +65,8 @@
     </div>
 </div>
 {% endif %}
-    {% endblock content %}
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'js/script.js' %}"></script>
+{% endblock script %}
