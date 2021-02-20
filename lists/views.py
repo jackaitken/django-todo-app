@@ -4,7 +4,7 @@ from .forms import CustomUserCreationForm
 from django.views.generic import CreateView, ListView, DeleteView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from .models import ToDoList, Item
 
 class SignUpView(CreateView):
@@ -49,3 +49,10 @@ def item_new_view(request, pk):
             pass
     else:
         return render(request, 'item_new.html')
+
+def mark_item_as_completed_view(request, pk):
+    if request.method == "PUT":
+        return JsonResponse({
+            "success: completed"
+        })
+        
