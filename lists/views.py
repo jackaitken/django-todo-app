@@ -4,8 +4,9 @@ from .forms import CustomUserCreationForm
 from django.views.generic import CreateView, ListView, DeleteView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from .models import ToDoList, Item
+from django.views.decorators.csrf import csrf_exempt
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
@@ -50,9 +51,21 @@ def item_new_view(request, pk):
     else:
         return render(request, 'item_new.html')
 
+@csrf_exempt
 def mark_item_as_completed_view(request, pk):
     if request.method == "PUT":
-        return JsonResponse({
-            "success: completed"
-        })
-        
+        # Get the kwarg id
+        print(request)
+        item_id = request.kwargs.get("pk", None)
+        if item_id is not None:
+            try:
+                item_obj = get_object_or_404(Item, pk=item_id)
+                completed = request.POST.get("completed", None)
+                item_obj.update(completed=completed)
+                return JsonResponse({
+                    "success": completed,
+                    "list_id": item_obj.id
+                })
+            except item_obj.DoesNotExist:
+                pass
+            return JsonResponse({"error": "something went wrong"}, status=401)
