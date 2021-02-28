@@ -54,18 +54,13 @@ def item_new_view(request, pk):
 @csrf_exempt
 def mark_item_as_completed_view(request, pk):
     if request.method == "PUT":
-        # Get the kwarg id
-        print(request)
-        item_id = request.kwargs.get("pk", None)
-        if item_id is not None:
-            try:
-                item_obj = get_object_or_404(Item, pk=item_id)
-                completed = request.POST.get("completed", None)
-                item_obj.update(completed=completed)
-                return JsonResponse({
-                    "success": completed,
-                    "list_id": item_obj.id
-                })
-            except item_obj.DoesNotExist:
-                pass
-            return JsonResponse({"error": "something went wrong"}, status=401)
+        try:
+            item_obj = get_object_or_404(Item, pk=pk)
+            item_obj.completed == True
+            return JsonResponse({
+                "success": "Okay",
+                "list_id": item_obj.id
+            })
+        except item_obj.DoesNotExist:
+            pass
+        return JsonResponse({"error": "something went wrong"}, status=401)

@@ -29,7 +29,7 @@
                             <ol class="list-group">
                             {% for item in list.items.all %}
                                 <li class="list-group-item">
-                                    <input class="form-check-input me-1" data-id="{{ item.pk }}" type="checkbox" id="completed">
+                                    <input class="form-check-input me-1" data-id="{{ item.pk }}" type="checkbox" id="completed" name="completed">
                                     {{ item }}
                                 </li>
                             {% endfor %}
